@@ -1,0 +1,5 @@
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+*/__pycache__/*
+vae_save/
+img/batch/

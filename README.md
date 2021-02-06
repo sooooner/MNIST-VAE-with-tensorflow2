@@ -8,19 +8,23 @@ Auto-Encoding Variational Bayes[[link](https://arxiv.org/abs/1312.6114)]
 ```
 .
 └── img/
-    ├── image_at_epoch_{num}.png       # Generated image at epoch {num}
+    └──batch/
+        ├── image_at_batch_{epoch}_{batch}.png   # Generated image at {epoch} {batch}
+        └── ...
+    ├── image_at_epoch_{num}.png                 # Generated image at {epoch}
     ├── ...
-    └── vae.gif                        # Animation of generated images
+    └── vae.gif                                  # Animation of generated images
 └── utils/           
     ├── __init__.py
-    ├── callback.py                    # Custom callback function
-    ├── layers.py                      # Encoder, Decoder implement
-    ├── model.py                       # VAE implement
-    └── utils.py                       # Other functions to draw a plot
+    ├── callback.py                              # Custom callback function
+    ├── layers.py                                # Encoder, Decoder implement
+    ├── model.py                                 # VAE implement
+    └── utils.py                                 # Other functions to draw a plot
 ├── .gitignore         
-├── requirements.txt                
-├── VAE.ipynb                          # Examples of progress 
-└── VAE.py                             # model training and save weight py
+├── requirements.txt   
+├── config.txt                                   # model config
+├── VAE.ipynb                                    # Examples of progress 
+└── VAE.py                                       # model training and save weight py
 ```
 
 ## Usage

@@ -1,7 +1,7 @@
 # Variational AutoEncoder(VAE) implemented with tensorflow 2
 
 ## Description
-Auto-Encoding Variational Bayes[ [link](https://arxiv.org/abs/1312.6114)]
+Auto-Encoding Variational Bayes[[link](https://arxiv.org/abs/1312.6114)]
 
 ## structure
 

@@ -26,15 +26,11 @@ Auto-Encoding Variational Bayes[[link](https://arxiv.org/abs/1312.6114)]
 ## Usage
 
 ```
-python VAE.py --LATENT_DIM=2 --epoch=5 --batch=512 --lr=0.0001 --fig_save=False --model_save=False
+python VAE.py --fig_save=True --model_save=True
 ```
 
-+ --LATENT_DIM : latent represent dimmension(int, default=2)  
-+ --epoch : number of epoch(int, default=5)  
-+ --batch : batch size(int, default=512)  
-+ --lr : learning rate(float, default=1e-4)  
 + --fig_save : Whether to save the generated image(bool, default=False)  
-+ --model_save : Whether to save the generated model(bool, default=False)  
++ --model_save : Whether to save the generated model(bool, default=True)  
 
 ## Result
 

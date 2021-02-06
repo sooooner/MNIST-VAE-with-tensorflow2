@@ -1,13 +1,14 @@
 from IPython import display
 
+import os
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import glob
 import imageio
 
-
 class Display_sampling(tf.keras.callbacks.Callback):
     def __init__(self, model, test_sample, display=True, save=True, clear_output=True):
+        self.img_cnt = 0
         self.model = model
         self.test_sample = test_sample
         self.display = display
@@ -28,10 +29,9 @@ class Display_sampling(tf.keras.callbacks.Callback):
             plt.imshow(self.test_sample[i, :, :, 0], cmap='gray')
             plt.axis('off')
 
-
         if batch and self.save:
-            fig.suptitle(f'image_at_batch_{num}')
-            plt.savefig(f'./img/batch/image_at_batch_{num}.png')
+            fig.suptitle(f'image_at_batch_{self.img_cnt}_{num}')
+            plt.savefig(f'./img/batch/image_at_batch_{self.img_cnt}_{num}.png')
             plt.close()
         elif self.save:
             fig.suptitle(f'image_at_epoch_{num}')
@@ -46,10 +46,11 @@ class Display_sampling(tf.keras.callbacks.Callback):
         self.generate_and_images(self.model, num=0)
 
     def on_batch_end(self, batch, logs=None):
-        if batch % 10 == 0:
+        if batch % 25 == 0:
             self.generate_and_images(self.model, batch+1, batch=True)
 
     def on_epoch_end(self, epoch, logs):
+        self.img_cnt += 1
         if self.clear_output:
             display.clear_output(wait=False)
         self.generate_and_images(self.model, epoch+1)
@@ -58,11 +59,12 @@ class Display_sampling(tf.keras.callbacks.Callback):
         if self.save and self.display:
             anim_file = './img/vae.gif'
 
+            if not os.path.isdir("./img/batch"):                                                           
+                os.mkdir("./img/batch")
+
             with imageio.get_writer(anim_file, mode='I') as writer:
                 filenames = glob.glob('./img/batch/image_at_batch_*.png')
                 filenames = sorted(filenames)
-                image = imageio.imread('./img/image_at_epoch_0.png')
-                writer.append_data(image)
                 for filename in filenames:
                     image = imageio.imread(filename)
                     writer.append_data(image)
